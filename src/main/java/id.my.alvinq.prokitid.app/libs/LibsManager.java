@@ -18,7 +18,7 @@ public class LibsManager {
     File cDir = new File(dirPath, "cache/dexout");
     if(!cDir.exists()) cDir.mkdirs();
     this.cDir = cDir;
-    this.context = context;
+    this.context = ctx;
   }
 
   public static LibsManager get(Context ctx) {
