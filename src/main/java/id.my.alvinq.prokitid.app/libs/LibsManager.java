@@ -48,11 +48,16 @@ public class LibsManager {
       try {
       copyFolderFromJar(file.getAbsolutePath(), "native", libPath);
       dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),libPath.getAbsolutePath(),this.context.getClassLoader());
+      invokeM(dcl, file);
+      return;
       } catch (IOException e) {}
     } else {
       dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),null,this.context.getClassLoader());
+      invokeM(dcl, file);
+      return;
     }
-    
+  }
+  private static void invokeM(DexClassLoader dcl, File file) {
     String className = getMainClassFromManifest(file);
     if (className == null) {
         Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + file.getName());
