@@ -14,7 +14,7 @@ public class LibsManager {
   private final File cDir;
   //private final DexClassLoader dcl;
   public LibsManager(Context ctx) {
-    String dirPath = context.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+    String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
     File cDir = new File(dirPath, "cache/dexout");
     if(!cDir.exists()) cDir.mkdirs();
     this.cDir = cDir;
