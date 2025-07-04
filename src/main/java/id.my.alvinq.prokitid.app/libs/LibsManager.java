@@ -88,7 +88,7 @@ public class LibsManager {
             }
 
             JSONObject json = new JSONObject(jsonBuilder.toString());
-            if(!json.has("main") return null;
+            if(!json.has("main")) return null;
             return json.getString("main");
 
         } catch (Exception e) {
@@ -112,7 +112,7 @@ public class LibsManager {
             }
 
             JSONObject json = new JSONObject(jsonBuilder.toString());
-            if(!json.has("native") return false;
+            if(!json.has("native")) return false;
             return json.getBoolean("native");
 
         } catch (Exception e) {
