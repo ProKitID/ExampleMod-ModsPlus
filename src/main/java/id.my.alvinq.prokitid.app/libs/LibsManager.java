@@ -11,8 +11,8 @@ import org.json.JSONObject;
 import org.levimc.launcher.util.Logger;
 
 public class LibsManager {
-  private final Context context;
-  private final File cDir;
+  private static final Context context;
+  private static final File cDir;
   //private final DexClassLoader dcl;
   public LibsManager(Context ctx) {
     String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
@@ -67,7 +67,7 @@ public class LibsManager {
     try {
         Class<?> clazz = dcl.loadClass(className);
         Method method = clazz.getDeclaredMethod("onLoad", Context.class);
-        method.invoke(null, context); // static method, no instance
+        method.invoke(null, this.context); // static method, no instance
         Logger.get().info("Loaded Class -> " + className + " Done!");
     } catch (Exception e) {
         Throwable real = e instanceof InvocationTargetException ? ((InvocationTargetException) e).getCause() : e;
