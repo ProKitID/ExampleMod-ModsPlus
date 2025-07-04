@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Repositori untuk AndroidX -->
+    <!-- Repositori -->
     <repositories>
         <repository>
             <id>google</id>
@@ -30,40 +30,54 @@
         </repository>
     </repositories>
 
+    <!-- FIX versinya lifecycle-common -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>androidx.lifecycle</groupId>
+                <artifactId>lifecycle-common</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <!-- JSON -->
         <dependency>
-           <groupId>org.json</groupId>
-           <artifactId>json</artifactId>
-           <version>20240303</version>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
         </dependency>
+
+        <!-- Android SDK -->
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>4.1.1.4</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- AndroidX -->
         <dependency>
             <groupId>androidx.core</groupId>
             <artifactId>core</artifactId>
             <version>1.13.1</version>
         </dependency>
-             <dependency>
-  <groupId>androidx.lifecycle</groupId>
-  <artifactId>lifecycle-common</artifactId>
-  <version>2.6.2</version>
-</dependency>
-             
+
         <dependency>
             <groupId>androidx.appcompat</groupId>
             <artifactId>appcompat</artifactId>
             <version>1.6.1</version>
         </dependency>
+
         <dependency>
             <groupId>androidx.constraintlayout</groupId>
             <artifactId>constraintlayout</artifactId>
             <version>2.1.4</version>
         </dependency>
     </dependencies>
+
+    <!-- Java 17 -->
     <build>
         <plugins>
             <plugin>
