@@ -24,8 +24,14 @@ public class LibsManager {
     LibsManager lm = new LibsManager(ctx);
     return lm;
   }
+  private static String getIsIis(File fl) {
+    File file = new File(fl, "native");
+    if(getNaviteLibsFromManifest(fl)) return file.getAbsolutePath();
+    return null;
+  }
   public void loadLib(File file) {
-    DexClassLoader dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),null,this.context.getClassLoader());
+    
+    DexClassLoader dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),getIsIis(file),this.context.getClassLoader());
     String className = getMainClassFromManifest(jarFile);
     if (className == null) {
         Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + jarFile.getName());
@@ -44,6 +50,7 @@ public class LibsManager {
         Logger.get().error("Error!: " + errorLog);
     }
   }
+  /*
   public void unLoadLib(File file) {
     DexClassLoader dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),null,this.context.getClassLoader());
     String className = getMainClassFromManifest(jarFile);
@@ -64,6 +71,7 @@ public class LibsManager {
         Logger.get().error("Error!: " + errorLog);
     }
   }
+  */
   private String getMainClassFromManifest(File jarFile) {
         try (JarFile jar = new JarFile(jarFile)) {
             JarEntry entry = jar.getJarEntry("manifest.json");
@@ -80,7 +88,32 @@ public class LibsManager {
             }
 
             JSONObject json = new JSONObject(jsonBuilder.toString());
+            if(!json.has("main") return null;
             return json.getString("main");
+
+        } catch (Exception e) {
+            Logger.get().error("Error!: " + e.toString());
+        }
+        return null;
+  }
+  private Boolean getNaviteLibsFromManifest(File jarFile) {
+        try (JarFile jar = new JarFile(jarFile)) {
+            JarEntry entry = jar.getJarEntry("manifest.json");
+            if (entry == null) return null;
+
+            InputStream input = jar.getInputStream(entry);
+            StringBuilder jsonBuilder = new StringBuilder();
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    jsonBuilder.append(line);
+                }
+            }
+
+            JSONObject json = new JSONObject(jsonBuilder.toString());
+            if(!json.has("native") return false;
+            return json.getBoolean("native");
 
         } catch (Exception e) {
             Logger.get().error("Error!: " + e.toString());
