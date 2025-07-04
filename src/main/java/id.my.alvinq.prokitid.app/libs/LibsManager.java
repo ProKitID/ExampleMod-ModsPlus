@@ -3,10 +3,11 @@ package id.my.alvinq.prokitid.app.libs;
 import dalvik.system.DexClassLoader;
 import android.content.Context;
 import java.io.*;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
 import org.json.JSONObject;
+import org.levimc.launcher.util.Logger;
 
 public class LibsManager {
   private final Context context;
@@ -32,9 +33,9 @@ public class LibsManager {
   public void loadLib(File file) {
     
     DexClassLoader dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),getIsIis(file),this.context.getClassLoader());
-    String className = getMainClassFromManifest(jarFile);
+    String className = getMainClassFromManifest(file);
     if (className == null) {
-        Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + jarFile.getName());
+        Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + file.getName());
         return;
     }
     Logger.get().info("Loaded Class -> " + className);
