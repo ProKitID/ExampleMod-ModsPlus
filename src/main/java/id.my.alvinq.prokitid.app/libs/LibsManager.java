@@ -32,7 +32,24 @@ public class LibsManager {
   }
   public void loadLib(File file) {
     
-    DexClassLoader dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),getIsIis(file),this.context.getClassLoader());
+    DexClassLoader dcl;
+    if(getIsIis(file)) {
+      //File nativePath = new File(file, "native
+      File libPath = new File(file.getName().substring(0, file.getName().lastIndexOf(".")) + "/native");
+      if(!libPath.exists()) {
+        libPath.mkdirs();
+      } else {
+        if(!libPath.isDirectory()) {
+          libPath.delete();
+          libPath.mkdirs();
+        }
+      }
+      copyFolderFromJar(file.getAbsolutePath(), "native", libPath);
+      dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),libPath.getAbsolutePath(),this.context.getClassLoader());
+    } else {
+      dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),null,this.context.getClassLoader());
+    }
+    
     String className = getMainClassFromManifest(file);
     if (className == null) {
         Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + file.getName());
@@ -97,6 +114,42 @@ public class LibsManager {
         }
         return null;
   }
+
+public void copyFileFromJar(String jarFilePath, String sourceFileName, File destFile) throws IOException {
+    try (JarFile jarFile = new JarFile(jarFilePath)) {
+        JarEntry jarEntry = jarFile.getJarEntry(sourceFileName);
+        try (InputStream in = jarFile.getInputStream(jarEntry);
+             FileOutputStream out = new FileOutputStream(destFile)) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+        }
+    }
+}
+
+public void copyFolderFromJar(String jarFilePath, String sourceFolderName, File destFolder) throws IOException {
+    try (JarFile jarFile = new JarFile(jarFilePath)) {
+        Enumeration<JarEntry> entries = jarFile.entries();
+        while (entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            if (entry.getName().startsWith(sourceFolderName + "/")) {
+                String fileName = entry.getName().substring(sourceFolderName.length() + 1);
+                File destFile = new File(destFolder, fileName);
+                destFile.getParentFile().mkdirs();
+                try (InputStream in = jarFile.getInputStream(entry);
+                     FileOutputStream out = new FileOutputStream(destFile)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, bytesRead);
+                    }
+                }
+            }
+        }
+    }
+}
   private static Boolean getNaviteLibsFromManifest(File jarFile) {
         try (JarFile jar = new JarFile(jarFile)) {
             JarEntry entry = jar.getJarEntry("manifest.json");
