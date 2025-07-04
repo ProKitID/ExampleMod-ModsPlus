@@ -11,8 +11,8 @@ import org.json.JSONObject;
 import org.levimc.launcher.util.Logger;
 
 public class LibsManager {
-  private final Context context;
-  private final File cDir;
+  private static Context context;
+  private static File cDir;
   //private final DexClassLoader dcl;
   public LibsManager(Context ctx) {
     String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
