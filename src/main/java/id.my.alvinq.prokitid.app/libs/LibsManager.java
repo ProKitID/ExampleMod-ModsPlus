@@ -67,7 +67,7 @@ public class LibsManager {
     try {
         Class<?> clazz = dcl.loadClass(className);
         Method method = clazz.getDeclaredMethod("onLoad", Context.class);
-        method.invoke(null, this.context); // static method, no instance
+        method.invoke(null, context); // static method, no instance
         Logger.get().info("Loaded Class -> " + className + " Done!");
     } catch (Exception e) {
         Throwable real = e instanceof InvocationTargetException ? ((InvocationTargetException) e).getCause() : e;
