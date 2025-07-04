@@ -45,8 +45,10 @@ public class LibsManager {
           libPath.mkdirs();
         }
       }
+      try {
       copyFolderFromJar(file.getAbsolutePath(), "native", libPath);
       dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),libPath.getAbsolutePath(),this.context.getClassLoader());
+      } catch (IOException e) {}
     } else {
       dcl = new DexClassLoader(file.getAbsolutePath(),this.cDir.getAbsolutePath(),null,this.context.getClassLoader());
     }
