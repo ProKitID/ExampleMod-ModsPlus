@@ -3,6 +3,7 @@ package id.my.alvinq.prokitid.app.libs;
 import dalvik.system.DexClassLoader;
 import android.content.Context;
 import java.io.*;
+import java.util.*;
 import java.lang.reflect.*;
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
@@ -33,7 +34,7 @@ public class LibsManager {
   public void loadLib(File file) {
     
     DexClassLoader dcl;
-    if(getIsIis(file)) {
+    if(getNaviteLibsFromManifest(file)) {
       //File nativePath = new File(file, "native
       File libPath = new File(file.getName().substring(0, file.getName().lastIndexOf(".")) + "/native");
       if(!libPath.exists()) {
