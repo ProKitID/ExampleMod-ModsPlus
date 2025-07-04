@@ -1,8 +1,81 @@
 package id.my.alvinq.prokitid.app.libs;
 
 import android.content.Context;
+import java.io.*;
 
 public class Libs {
   public static void Main(Context ctx) {
+    copyAllLibs(ctx);
+    loadAllLibs(ctx);
   }
+  public static void copyAllLibs(Context ctx) {
+      try {
+        //Context context = ctx;
+        String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+        File dirsPath = new File(dirPath, "libs");
+        File libsDir = new File("/storage/emulated/0/alvinqid/libs");
+        if (!libsDir.exists()) {
+            libsDir.mkdirs();
+            Logger.get().info("Libs Folder Created!");
+        } else {
+            if(!libsDir.isDirectory()) {
+                libsDir.delete();
+                libsDir.mkdirs();
+            }
+        }
+        if (!dirsPath.exists()) {
+            dirsPath.mkdirs();
+            Logger.get().info("Folder Internal Libs");
+        } else {
+            if(!dirsPath.isDirectory()) {
+                dirsPath.delete();
+                dirsPath.mkdirs();
+            } else {
+		            dirsPath.delete();
+                dirsPath.mkdirs();
+	          }
+        }
+	      
+        File[] jars = libsDir.listFiles();
+        if (jars != null) {
+            for (File jar : jars) {
+                if(!jar.getName().endsWith(".jar")) continue;
+                File resf = new File(dirsPath, jar.getName());
+	            	copyFile(jar, resf);
+	          }  
+        }
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+  }
+  public static void copyFile(File source, File dest) throws IOException {
+    try (InputStream in = new FileInputStream(source);
+         OutputStream out = new FileOutputStream(dest)) {
+
+        byte[] buffer = new byte[4096];
+        int length;
+        while ((length = in.read(buffer)) > 0) {
+            out.write(buffer, 0, length);
+        }
+    }
+  }
+  public static void loadAllLibs(Context ctx) {
+        try {
+        String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+        //File libsDir = new File("/storage/emulated/0/alvinqid", "libs");
+        File libsDir = new File(dirPath, "libs");
+        
+        File[] jars = libsDir.listFiles();
+        if (jars != null) {
+            for (File jar : jars) {
+                if(!jar.getName().endsWith(".jar")) continue;
+                //LogToast(ctx, "Loaded -> " + jar.getName());
+	            	Logger.get().info("Loaded -> " + jar.getName());
+                LibsManager.get(ctx).loadLib(jar);
+            }
+        }
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+        }
+    }
 }
