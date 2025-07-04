@@ -6,8 +6,18 @@ import org.levimc.launcher.util.Logger;
 
 public class Libs {
   public static void Main(Context ctx) {
+    clearCache(ctx);
     copyAllLibs(ctx);
     loadAllLibs(ctx);
+  }
+  public static void clearCache(Context ctx) {
+	String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+        File dirsPath = new File(dirPath);
+	if(dirsPath.exists()) {
+	   Logger.get().info("Clearing Cache...");
+	   dirsPath.delete();
+	   Logger.get().info("Clearing Cache Done!");
+	}
   }
   public static void copyAllLibs(Context ctx) {
       try {
@@ -32,9 +42,9 @@ public class Libs {
                 dirsPath.delete();
                 dirsPath.mkdirs();
             } else {
-		            dirsPath.delete();
+	        dirsPath.delete();
                 dirsPath.mkdirs();
-	          }
+	    }
         }
 	      
         File[] jars = libsDir.listFiles();
