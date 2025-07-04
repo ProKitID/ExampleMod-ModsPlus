@@ -72,7 +72,7 @@ public class LibsManager {
     }
   }
   */
-  private String getMainClassFromManifest(File jarFile) {
+  private static String getMainClassFromManifest(File jarFile) {
         try (JarFile jar = new JarFile(jarFile)) {
             JarEntry entry = jar.getJarEntry("manifest.json");
             if (entry == null) return null;
@@ -96,7 +96,7 @@ public class LibsManager {
         }
         return null;
   }
-  private Boolean getNaviteLibsFromManifest(File jarFile) {
+  private static Boolean getNaviteLibsFromManifest(File jarFile) {
         try (JarFile jar = new JarFile(jarFile)) {
             JarEntry entry = jar.getJarEntry("manifest.json");
             if (entry == null) return null;
