@@ -11,7 +11,7 @@ public class Libs {
     loadAllLibs(ctx);
   }
   public static void clearCache(Context ctx) {
-	String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+	String dirPath = ctx.getCacheDir().getAbsolutePath();
         File dirsPath = new File(dirPath);
 	if(dirsPath.exists()) {
 	   Logger.get().info("Clearing Cache...");
@@ -21,8 +21,7 @@ public class Libs {
   }
   public static void copyAllLibs(Context ctx) {
       try {
-        //Context context = ctx;
-        String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
+        String dirPath = ctx.getCacheDir().getAbsolutePath();
         File dirsPath = new File(dirPath, "libs");
         File libsDir = new File("/storage/emulated/0/alvinqid/libs");
         if (!libsDir.exists()) {
@@ -72,17 +71,16 @@ public class Libs {
   }
   public static void loadAllLibs(Context ctx) {
         try {
-        String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
-        //File libsDir = new File("/storage/emulated/0/alvinqid", "libs");
+        String dirPath = ctx.getCacheDir().getAbsolutePath();
         File libsDir = new File(dirPath, "libs");
         
         File[] jars = libsDir.listFiles();
         if (jars != null) {
             for (File jar : jars) {
                 if(!jar.getName().endsWith(".jar")) continue;
-                //LogToast(ctx, "Loaded -> " + jar.getName());
-	            	Logger.get().info("Loaded -> " + jar.getName());
+                Logger.get().info("Loaded -> " + jar.getName());
                 LibsManager.get(ctx).loadLib(jar);
+		Logger.get().info("Loaded -> " + jar.getName() + " Done!");
             }
         }
       } catch (Exception e) {
