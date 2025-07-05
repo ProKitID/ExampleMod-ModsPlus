@@ -58,6 +58,7 @@ public class LibsManager {
     }
   }
   private static void invokeM(DexClassLoader dcl, File file) {
+    Thread.currentThread().setContextClassLoader(dcl);
     String className = getMainClassFromManifest(file);
     if (className == null) {
         Logger.get().error("main class tidak ditemukan di manifest.json di jar: " + file.getName());
