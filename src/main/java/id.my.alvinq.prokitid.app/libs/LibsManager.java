@@ -13,10 +13,10 @@ import org.levimc.launcher.util.Logger;
 public class LibsManager {
   private static Context context;
   private static File cDir;
-  //private final DexClassLoader dcl;
+  
   public LibsManager(Context ctx) {
-    String dirPath = ctx.getDir("alvinqid", Context.MODE_PRIVATE).getAbsolutePath();
-    File cDir = new File(dirPath, "cache/dexout");
+    String dirPath = ctx.getCacheDir().getAbsolutePath();
+    File cDir = new File(dirPath, "dexout");
     if(!cDir.exists()) cDir.mkdirs();
     this.cDir = cDir;
     this.context = ctx;
