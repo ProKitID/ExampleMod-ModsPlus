@@ -7,7 +7,7 @@ import java.io.File;
 
 public class Mod {
   public static void onLoad(Context context) {
-    logFiles(context)
+    logFiles(context);
     Toast.makeText(context, "Pesan yang ingin ditampilkan", Toast.LENGTH_SHORT).show();
   }
   public static void logFiles(Context context) {
