@@ -1,4 +1,4 @@
-package id.my.alvinq.prokitid.app.libs;
+package id.my.alvinq.prokitid.libs;
 
 import dalvik.system.DexClassLoader;
 import android.content.Context;
