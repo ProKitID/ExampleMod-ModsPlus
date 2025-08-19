@@ -8,7 +8,7 @@ public class Libs {
   public static void onLoad(Context context) {
     CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
-    File lcon = new File(context.getCacheDir() + "/prokitid/native/libmod.so");
-    System.load(lcon.getAbsolutePath());
+    //File lcon = new File(context.getCacheDir() + "/prokitid/native/libmod.so");
+    System.loadLibrary("mod");
   }
 }
