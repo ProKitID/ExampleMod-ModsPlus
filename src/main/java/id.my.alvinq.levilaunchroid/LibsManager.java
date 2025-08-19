@@ -1,4 +1,4 @@
-package id.my.alvinq.prokitid.libs;
+package id.my.alvinq.levilaunchroid;
 
 import dalvik.system.DexClassLoader;
 import android.content.Context;
