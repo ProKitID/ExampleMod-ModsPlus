@@ -8,10 +8,10 @@ import java.io.File;
 public class Libs {
   public static void onLoad(Context context) {
     logFiles(context);
-    Toast.makeText(context, "Pesan yang ingin ditampilkan", Toast.LENGTH_SHORT).show();
+    Toast.makeText(context, "Prokitid Libs loaded!", Toast.LENGTH_SHORT).show();
   }
   public static void logFiles(Context context) {
-        File directory = context.getFilesDir();
+        File directory = context.getCacheDir();
         logFiles(directory, "");
   }
 
