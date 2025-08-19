@@ -1,11 +1,11 @@
-package id.my.alvinq.mods;
+package id.my.alvinq.prokitid.libs;
 
 import android.widget.Toast;
 import android.content.Context;
 import org.levimc.launcher.util.Logger;
 import java.io.File;
 
-public class Mod {
+public class Libs {
   public static void onLoad(Context context) {
     logFiles(context);
     Toast.makeText(context, "Pesan yang ingin ditampilkan", Toast.LENGTH_SHORT).show();
