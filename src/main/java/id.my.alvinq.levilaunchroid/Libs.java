@@ -1,11 +1,11 @@
-package id.my.alvinq.prokitid.libs;
+package id.my.alvinq.levilaunchroid;
 
 import android.content.Context;
 import java.io.*;
 import org.levimc.launcher.util.Logger;
 
-public class Main {
-  public static void onLoad(Context ctx) {
+public class Libs {
+  public static void Main(Context ctx) {
     clearCache(ctx);
     copyAllLibs(ctx);
     loadAllLibs(ctx);
@@ -35,7 +35,7 @@ public class Main {
         }
         if (!dirsPath.exists()) {
             dirsPath.mkdirs();
-            Logger.get().info("Folder Internal Libs");
+            Logger.get().info("Folder Internal Libs Created");
         } else {
             if(!dirsPath.isDirectory()) {
                 dirsPath.delete();
@@ -80,7 +80,7 @@ public class Main {
                 if(!jar.getName().endsWith(".jar")) continue;
                 Logger.get().info("Loaded -> " + jar.getName());
                 LibsManager.get(ctx).loadLib(jar);
-		Logger.get().info("Loaded -> " + jar.getName() + " Done!");
+		        Logger.get().info("Loaded -> " + jar.getName() + " Done!");
             }
         }
       } catch (Exception e) {
