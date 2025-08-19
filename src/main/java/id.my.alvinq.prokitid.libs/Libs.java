@@ -2,31 +2,13 @@ package id.my.alvinq.prokitid.libs;
 
 import android.widget.Toast;
 import android.content.Context;
-import org.levimc.launcher.util.Logger;
 import java.io.File;
 
 public class Libs {
   public static void onLoad(Context context) {
     CacheLogger.logAllCacheFiles(context);
-    Toast.makeText(context, "Prokitid Libs loaded!", Toast.LENGTH_SHORT).show();
+    Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
+    File lcon = new File(context.getCacheDir() + "/native/libmod.so");
+    System.load(lcon.getAbsolutePath());
   }
-  /*
-  public static void logFiles(Context context) {
-        File directory = context.getCacheDir();
-        logFiles(directory, "");
-  }
-
-  private static void logFiles(File directory, String indent) {
-        File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    Logger.get().info("FileLogger", indent + file.getName() + "/");
-                    logFiles(file, indent + "  ");
-                } else {
-                    Logger.get().info("FileLogger", indent + file.getName());
-                }
-            }
-        }
-  }*/
 }
