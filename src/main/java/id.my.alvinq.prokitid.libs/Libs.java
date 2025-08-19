@@ -7,9 +7,10 @@ import java.io.File;
 
 public class Libs {
   public static void onLoad(Context context) {
-    logFiles(context);
+    CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "Prokitid Libs loaded!", Toast.LENGTH_SHORT).show();
   }
+  /*
   public static void logFiles(Context context) {
         File directory = context.getCacheDir();
         logFiles(directory, "");
@@ -27,5 +28,5 @@ public class Libs {
                 }
             }
         }
-  }
+  }*/
 }
