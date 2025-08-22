@@ -10,6 +10,6 @@ public class Libs {
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
     //File lcon = new File(context.getCacheDir() + "/prokitid/native/libmod.so");
    // System.loadLibrary("mod");
-    FileUtils.copyFile("/storage/emulated/0/source/from.txt", "/storage/emulated/0/dest/target.txt")
+    FileUtils.copyFile("/storage/emulated/0/source/from.txt", "/storage/emulated/0/dest/target.txt");
   }
 }
