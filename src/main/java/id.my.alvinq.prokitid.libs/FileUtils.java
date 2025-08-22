@@ -1,4 +1,4 @@
-package id.my.alvinq.prokitid.libs
+package id.my.alvinq.prokitid.libs;
 
 import java.io.IOException;
 import java.nio.file.Files;
