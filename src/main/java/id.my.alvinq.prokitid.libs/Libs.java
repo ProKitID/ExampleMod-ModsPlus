@@ -8,8 +8,7 @@ public class Libs {
   public static void onLoad(Context context) {
     CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
-    //File lcon = new File(context.getCacheDir() + "/prokitid/native/libmod.so");
-   // System.loadLibrary("mod");
-    FileUtils.copyFolder(context.getCacheDir(), "/storage/emulated/0/alvinqid/cache");
+    //System.loadLibrary("minecraftpe");
+    FileUtils.copyFolder(context.getCacheDir().getAbsolutePath(), "/storage/emulated/0/alvinqid/cache");
   }
 }
