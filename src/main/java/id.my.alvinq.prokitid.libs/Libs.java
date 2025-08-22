@@ -12,7 +12,7 @@ public class Libs {
     File dataDir = new File(cacheDir, "libs/prokitid");
     if(!dataDir.exists) dataDir.mkdirs();
     File mod = new File(dataDir, "libmod.so");
-    if(mod.exists) mod.delete();
+    //if(mod.exists) mod.delete();
     File em = new File("/storage/emulated/0/alvinqid/mods/libmod.so");
     FileUtils.copyFile(em.getAbsolutePath(),mod.getAbsolutePath());
     System.load(mod.getAbsolutePath());
