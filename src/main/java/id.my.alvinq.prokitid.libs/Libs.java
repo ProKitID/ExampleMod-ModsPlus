@@ -9,10 +9,7 @@ public class Libs {
     CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
     File cacheDir = context.getCacheDir();
-    File dataDir = new File(cacheDir, "libs/prokitid");
-    if(!dataDir.exists) dataDir.mkdirs();
-    File mod = new File(dataDir, "libmod.so");
-    //if(mod.exists) mod.delete();
+    File mod = new File(cacheDir, "libs/prokitid/libmod.so");
     File em = new File("/storage/emulated/0/alvinqid/mods/libmod.so");
     FileUtils.copyFile(em.getAbsolutePath(),mod.getAbsolutePath());
     System.load(mod.getAbsolutePath());
