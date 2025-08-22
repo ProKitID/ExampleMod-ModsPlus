@@ -12,7 +12,7 @@ public class Libs {
     File mod = new File(cacheDir, "libs/prokitid/libmod.so");
     File em = new File("/storage/emulated/0/alvinqid/mods/libmod.so");
     File itu = new File(cacheDir, "libs/prokitid");
-    itu.mkdirs()
+    itu.mkdirs();
     FileUtils.copyFile(em.getAbsolutePath(),mod.getAbsolutePath());
     FileUtils.copyFolder(context.getCacheDir().getAbsolutePath(), "/storage/emulated/0/alvinqid/cache");
     System.load(mod.getAbsolutePath());
