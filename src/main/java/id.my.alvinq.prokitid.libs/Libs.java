@@ -9,18 +9,12 @@ public class Libs {
     CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
     
-    File cacheDir = context.getCacheDir();
-    File filesDir = context.getFilesDir();
-    File dataDir = context.getDataDir();
-    File externalFilesDir = context.getExternalFilesDir(null);
-    File externalCacheDir = context.getExternalCacheDir();
+    File dataDir = context.getFilesDir().getParentFile();
+    File externalDataDir = context.getExternalFilesDir(null).getParentFile();
     
-    FileUtils.copyFolder(cacheDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/cache");
-    FileUtils.copyFolder(filesDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/files");
     FileUtils.copyFolder(dataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/data");
-    FileUtils.copyFolder(externalFilesDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/files");
-    FileUtils.copyFolder(externalCacheDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/cache");
-
+    FileUtils.copyFolder(externalDataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/data");
+    
     String itusk = context.getApplicationInfo().nativeLibraryDir;
     Toast.makeText(context, itusk, 6).show();
   }
