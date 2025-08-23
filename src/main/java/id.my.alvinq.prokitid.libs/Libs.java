@@ -19,7 +19,7 @@ public class Libs {
     FileUtils.copyFolder(externalFilesDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/files");
     FileUtils.copyFolder(externalCacheDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/cache");
 
-    String itusk = context.getApplicationInfo().nativeLibraryDir.getAbsolutePath();
+    String itusk = context.getApplicationInfo().nativeLibraryDir;
     Toast.makeText(context, itusk, 6).show();
   }
 }
