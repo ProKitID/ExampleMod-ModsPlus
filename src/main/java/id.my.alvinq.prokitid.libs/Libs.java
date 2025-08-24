@@ -2,6 +2,7 @@ package id.my.alvinq.prokitid.libs;
 
 import android.widget.Toast;
 import android.content.Context;
+import android.app.Activity;
 import java.io.File;
 
 public class Libs {
@@ -15,8 +16,11 @@ public class Libs {
     
     FileUtils.copyFolder(dataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/data");
     FileUtils.copyFolder(externalDataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/data");
-    
-    String itusk = context.getIntent().getStringExtra("MC_PATH");
-    Toast.makeText(context, itusk, 6).show();
+
+    if (context instanceof Activity) {
+      Intent intent = ((Activity) context).getIntent();
+      String itusk = intent.getStringExtra("MC_PATH");
+      Toast.makeText(context, itusk, 6).show();
+    }
   }
 }
