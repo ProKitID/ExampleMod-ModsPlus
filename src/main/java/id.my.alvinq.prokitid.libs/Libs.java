@@ -10,12 +10,15 @@ public class Libs {
   public static void onLoad(Context context) {
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
 
+    try {
     if (context instanceof Activity) {
       Intent intent = ((Activity) context).getIntent();
       String itusk = intent.getStringExtra("MC_PATH");
+      FileUtils.copyFile(itusk + "/version.txt", "/storage/emulated/0/alvinqid/version.txt");
       FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", itusk + "/lib/arm64/mtbinloader2.so");
       System.loadLibrary("mtbinloader2");
     }
+    } catch (Exception e) {}
     
     File dataDir = context.getFilesDir().getParentFile();
     File externalDataDir = context.getExternalFilesDir(null).getParentFile();
