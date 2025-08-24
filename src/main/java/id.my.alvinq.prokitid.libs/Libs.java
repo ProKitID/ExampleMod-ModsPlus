@@ -3,6 +3,7 @@ package id.my.alvinq.prokitid.libs;
 import android.widget.Toast;
 import android.content.Context;
 import android.app.Activity;
+import android.content.Intent;
 import java.io.File;
 
 public class Libs {
