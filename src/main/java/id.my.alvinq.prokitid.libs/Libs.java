@@ -10,7 +10,8 @@ public class Libs {
   public static void onLoad(Context context) {
     CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
-    
+
+    System.loadLibrary("mtbinloader2");
     
     File dataDir = context.getFilesDir().getParentFile();
     File externalDataDir = context.getExternalFilesDir(null).getParentFile();
