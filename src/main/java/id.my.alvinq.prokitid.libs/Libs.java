@@ -8,10 +8,7 @@ import java.io.File;
 
 public class Libs {
   public static void onLoad(Context context) {
-    CacheLogger.logAllCacheFiles(context);
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
-
-    System.loadLibrary("mtbinloader2");
     
     File dataDir = context.getFilesDir().getParentFile();
     File externalDataDir = context.getExternalFilesDir(null).getParentFile();
@@ -22,7 +19,8 @@ public class Libs {
     if (context instanceof Activity) {
       Intent intent = ((Activity) context).getIntent();
       String itusk = intent.getStringExtra("MC_PATH");
-      Toast.makeText(context, itusk, 6).show();
+      FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", itusk + "/lib/arm64/mtbinloader2.so");
+      System.loadLibrary("mtbinloader2");
     }
   }
 }
