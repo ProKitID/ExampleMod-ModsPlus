@@ -9,7 +9,14 @@ public class FileUtils {
     public static void copyFile(String from, String to) {
         try {
         Files.copy(Paths.get(from), Paths.get(to), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException error) {}
+        } catch (Exception error) {
+            Throwable real = (e instanceof InvocationTargetException)
+                    ? ((InvocationTargetException) e).getCause()
+                    : e;
+            String errorLog = getStackTraceAsString(real);
+            Toast.makeText(context, errorLog, Toast.LENGTH_LONG).show();
+            Logger.get().error("Error!: " + errorLog);
+        }
     }
 
     public static void copyFolder(String source, String target) {
@@ -33,6 +40,13 @@ public class FileUtils {
                 return FileVisitResult.CONTINUE;
             }
         });
-    } catch (IOException error) {}
+    } catch (IOException error) {
+            Throwable real = (e instanceof InvocationTargetException)
+                    ? ((InvocationTargetException) e).getCause()
+                    : e;
+            String errorLog = getStackTraceAsString(real);
+            Toast.makeText(context, errorLog, Toast.LENGTH_LONG).show();
+            Logger.get().error("Error!: " + errorLog);
+    }
     }
 }
