@@ -14,7 +14,7 @@ public class Libs {
     String mcPath = intent.getStringExtra("MC_PATH");
     File libFile = new File(mcPath + "/lib/arm64");
     String libPath = libFile.getAbsolutePath();
-    if(!libFile.exists) libFile.mkdirs();
+    if(!libFile.exists()) libFile.mkdirs();
     FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", libPath + "/mtbinloader2.so");
     
     File dataDir = context.getFilesDir().getParentFile();
