@@ -55,7 +55,7 @@ public class FileUtils {
                 return FileVisitResult.CONTINUE;
             }
         });
-    } catch (IOException e) {
+    } catch (Exception e) {
             Throwable real = (e instanceof InvocationTargetException)
                     ? ((InvocationTargetException) e).getCause()
                     : e;
