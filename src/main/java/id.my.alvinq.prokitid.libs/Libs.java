@@ -9,15 +9,13 @@ import java.io.File;
 public class Libs {
   public static void onLoad(Context context) {
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
-
     new FileUtils(context);
-  
-      Intent intent = ((Activity) context).getIntent();
-      String itusk = intent.getStringExtra("MC_PATH");
-      FileUtils.copyFile(itusk + "/version.txt", "/storage/emulated/0/alvinqid/version.txt");
-      FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", itusk + "/lib/arm64/mtbinloader2.so");
-      
-    
+    Intent intent = ((Activity) context).getIntent();
+    String mcPath = intent.getStringExtra("MC_PATH");
+    File libFile = new File(mcPath + "/lib/arm64");
+    String libPath = libFile.getAbsolutePath();
+    if(!libFile.exists) libFile.mkdirs();
+    FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", libPath + "/mtbinloader2.so");
     
     File dataDir = context.getFilesDir().getParentFile();
     File externalDataDir = context.getExternalFilesDir(null).getParentFile();
