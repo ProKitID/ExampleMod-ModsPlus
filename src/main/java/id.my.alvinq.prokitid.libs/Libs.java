@@ -10,6 +10,7 @@ public class Libs {
   public static void onLoad(Context context) {
     Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
 
+    new FileUtils(context);
   
       Intent intent = ((Activity) context).getIntent();
       String itusk = intent.getStringExtra("MC_PATH");
