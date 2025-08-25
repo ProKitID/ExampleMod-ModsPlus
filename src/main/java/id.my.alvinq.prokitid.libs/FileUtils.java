@@ -5,8 +5,16 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import android.widget.Toast;
 import org.levimc.launcher.util.Logger;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.reflect.InvocationTargetException;
+import android.content.Context;
 
 public class FileUtils {
+    private static Context context;
+    public FileUtils(Context ctx) {
+        context = ctx;
+    }
     public static String getStackTraceAsString(Throwable th) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
