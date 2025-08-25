@@ -3,13 +3,20 @@ package id.my.alvinq.prokitid.libs;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import android.widget.Toast;
+import org.levimc.launcher.util.Logger;
 
 public class FileUtils {
-
+    public static String getStackTraceAsString(Throwable th) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        th.printStackTrace(pw);
+        return sw.toString();
+    }
     public static void copyFile(String from, String to) {
         try {
         Files.copy(Paths.get(from), Paths.get(to), StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception error) {
+        } catch (Exception e) {
             Throwable real = (e instanceof InvocationTargetException)
                     ? ((InvocationTargetException) e).getCause()
                     : e;
@@ -40,7 +47,7 @@ public class FileUtils {
                 return FileVisitResult.CONTINUE;
             }
         });
-    } catch (IOException error) {
+    } catch (IOException e) {
             Throwable real = (e instanceof InvocationTargetException)
                     ? ((InvocationTargetException) e).getCause()
                     : e;
