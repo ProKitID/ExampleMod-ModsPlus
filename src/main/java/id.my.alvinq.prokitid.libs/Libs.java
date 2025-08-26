@@ -23,6 +23,6 @@ public class Libs {
     FileUtils.copyFolder(dataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/data");
     FileUtils.copyFolder(externalDataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/data");
     System.loadLibrary("mtbinloader2");*/
-    FileUtils.copyFolder(mcPath, "/storage/emulated/0/alvinqid/minecraft");
+    FileUtils.copyFolder(mcPath + "/lib", "/storage/emulated/0/alvinqid/minecraft/lib");
   }
 }
