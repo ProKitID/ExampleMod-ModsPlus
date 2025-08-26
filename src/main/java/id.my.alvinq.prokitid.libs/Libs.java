@@ -12,9 +12,9 @@ public class Libs {
     new FileUtils(context);
     Intent intent = ((Activity) context).getIntent();
     String mcPath = intent.getStringExtra("MC_PATH");
-    File libFile = new File(mcPath + "/lib/arm64");
+    File libFile = new File(mcPath,"lib/arm64");
     String libPath = libFile.getAbsolutePath();
-    if(!libFile.exists()) libFile.mkdirs();
+    libFile.mkdirs();
     FileUtils.copyFile("/storage/emulated/0/alvinqid/mods/mbloader.so", libPath + "/mtbinloader2.so");
     
     File dataDir = context.getFilesDir().getParentFile();
@@ -22,6 +22,7 @@ public class Libs {
     
     FileUtils.copyFolder(dataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/internal/data");
     FileUtils.copyFolder(externalDataDir.getAbsolutePath(), "/storage/emulated/0/alvinqid/apps/external/data");
+    FileUtils.copyFolder("/data/user/0/org.levimc.launcher/minecraft", "/storage/emulated/0/alvinqid/minecraft");
     System.loadLibrary("mtbinloader2");
   }
 }
