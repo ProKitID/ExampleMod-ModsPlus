@@ -8,13 +8,8 @@ import org.levimc.launcher.util.Logger;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
-import android.content.Context;
 
 public class FileUtils {
-    private static Context context;
-    public FileUtils(Context ctx) {
-        context = ctx;
-    }
     public static String getStackTraceAsString(Throwable th) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
@@ -23,13 +18,10 @@ public class FileUtils {
     }
     public static void copyFile(String from, String to) {
         try {
-        Files.copy(Paths.get(from), Paths.get(to), StandardCopyOption.REPLACE_EXISTING);
+          Files.copy(Paths.get(from), Paths.get(to), StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
-            Throwable real = (e instanceof InvocationTargetException)
-                    ? ((InvocationTargetException) e).getCause()
-                    : e;
+            Throwable real = (e instanceof InvocationTargetException) ? ((InvocationTargetException) e).getCause() : e;
             String errorLog = getStackTraceAsString(real);
-            Toast.makeText(context, errorLog, Toast.LENGTH_LONG).show();
             Logger.get().error("Error!: " + errorLog);
         }
     }
@@ -56,12 +48,9 @@ public class FileUtils {
             }
         });
     } catch (Exception e) {
-            Throwable real = (e instanceof InvocationTargetException)
-                    ? ((InvocationTargetException) e).getCause()
-                    : e;
+            Throwable real = (e instanceof InvocationTargetException) ? ((InvocationTargetException) e).getCause() : e;
             String errorLog = getStackTraceAsString(real);
-            Toast.makeText(context, errorLog, Toast.LENGTH_LONG).show();
             Logger.get().error("Error!: " + errorLog);
-    }
+       }
     }
 }
