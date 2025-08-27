@@ -13,6 +13,9 @@ public class Libs {
     if(!libsModsDir.exists()) libsModsDir.mkdirs();
     FileUtils.copyFolder("/sdcard/alvinqid/mods", "/data/user/0/org.levimc.launcher/cache/alvinqid/mods");
     FileUtils.copyFolder(context.getCacheDir().getParent(), "/sdcard/alvinqid/data");
+    System.loadLibrary("c++_shared");
+    System.loadLibrary("fmod");
+    System.loadLibrary("minecraftpe");
     System.load("/data/user/0/org.levimc.launcher/cache/alvinqid/mods/mbloader.so");
   }
 }
