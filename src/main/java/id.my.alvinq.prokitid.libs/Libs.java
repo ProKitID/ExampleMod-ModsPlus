@@ -11,8 +11,8 @@ public class Libs {
     //Toast.makeText(context, "PL loaded!", Toast.LENGTH_LONG).show();
     File libsModsDir = new File("/data/user/0/org.levimc.launcher/cache/alvinqid/mods");
     if(!libsModsDir.exists()) libsModsDir.mkdirs();
+    FileUtils.copyFolder("/sdcard/alvinqid/mods", "/data/user/0/org.levimc.launcher/cache/alvinqid/mods");
     FileUtils.copyFolder(context.getCacheDir().getParent(), "/sdcard/alvinqid/data");
-    FileUtils.copyFile("/sdcard/alvinqid/mods/mbloader.so", "/data/user/0/org.levimc.launcher/cache/alvinqid/mods/libmbloader.so");
-    System.load("/data/user/0/org.levimc.launcher/cache/alvinqid/mods/libmbloader.so");
+    System.load("/data/user/0/org.levimc.launcher/cache/alvinqid/mods/mbloader.so");
   }
 }
