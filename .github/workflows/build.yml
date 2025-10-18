@@ -1,10 +1,7 @@
 name: Build
 
 on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,11 +31,11 @@ jobs:
     - name: Rename JAR file
       run: |
         JAR_FILE=$(ls target/*.jar | head -n 1)
-        cp "$JAR_FILE" "jsEngine#${{ github.run_number }}.jar"
+        cp "$JAR_FILE" "CompiledJava#${{ github.run_number }}.jar"
 
     - name: Upload JAR artifact
       uses: actions/upload-artifact@v4
       with:
-        name: jsEngine#${{ github.run_number }}
-        path: jsEngine#${{ github.run_number }}.jar
+        name: CompiledJava#${{ github.run_number }}
+        path: CompiledJava#${{ github.run_number }}.jar
         
