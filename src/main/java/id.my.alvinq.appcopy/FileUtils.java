@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import android.widget.Toast;
-import org.levimc.launcher.util.Logger;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +21,6 @@ public class FileUtils {
         } catch (Exception e) {
             Throwable real = (e instanceof InvocationTargetException) ? ((InvocationTargetException) e).getCause() : e;
             String errorLog = getStackTraceAsString(real);
-            Logger.get().error("Error!: " + errorLog);
         }
     }
 
@@ -50,7 +48,6 @@ public class FileUtils {
     } catch (Exception e) {
             Throwable real = (e instanceof InvocationTargetException) ? ((InvocationTargetException) e).getCause() : e;
             String errorLog = getStackTraceAsString(real);
-            Logger.get().error("Error!: " + errorLog);
        }
     }
 }
